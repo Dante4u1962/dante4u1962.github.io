@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trust Line Lending - Business Loans & Credit Lines</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            letter-spacing: 0.5px;
+        }
+
+        nav .logo svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* Page Container */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Features */
+        .features {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            color: #2a5298;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 4rem 0;
+        }
+
+        .content-section h2 {
+            font-size: 2.5rem;
+            color: #2a5298;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .content-section h3 {
+            font-size: 1.8rem;
+            color: #1e3c72;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        /* Services */
+        .service-card {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Testimonials */
+        .testimonial {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+
+        .testimonial-info h4 {
+            color: #2a5298;
+            font-size: 1.3rem;
+        }
+
+        .testimonial-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: #555;
+            line-height: 1.6;
+            margin: 1rem 0;
+        }
+
+        .funding-amount {
+            color: #ff6b6b;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Contact Section */
+        .contact-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .contact-info {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .contact-info p {
+            margin: 1rem 0;
+            font-size: 1.1rem;
+            color: #2a5298;
+        }
+
+        .contact-info a {
+            color: #1e3c72;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        footer .contact-footer {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
+        footer .contact-footer p {
+            margin: 0.3rem 0;
+            font-size: 0.95rem;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            nav .logo {
+                font-size: 1.2rem;
+            }
+
+            nav .logo svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#e0e7ff;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <!-- Shield shape -->
+                    <path d="M50 10 L80 25 L80 50 Q80 70 50 90 Q20 70 20 50 L20 25 Z" 
+                          fill="url(#logoGradient)" stroke="#ffffff" stroke-width="2"/>
+                    <!-- Letter T -->
+                    <rect x="42" y="35" width="16" height="3" fill="#1e3c72"/>
+                    <rect x="48" y="35" width="4" height="30" fill="#1e3c72"/>
+                    <!-- Letter L -->
+                    <rect x="60" y="35" width="4" height="30" fill="#2a5298"/>
+                    <rect x="60" y="61" width="12" height="4" fill="#2a5298"/>
+                </svg>
+                <span>Trust Line Lending</span>
+            </div>
+            <ul>
+                <li><a href="#" onclick="showPage('home')">Home</a></li>
+                <li><a href="#" onclick="showPage('about')">About</a></li>
+                <li><a href="#" onclick="showPage('services')">Services</a></li>
+                <li><a href="#" onclick="showPage('testimonials')">Testimonials</a></li>
+                <li><a href="#" onclick="showPage('contact')">Apply Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <div class="hero">
+            <div class="container">
+                <h1>Business Funding Made Simple</h1>
+                <p>From startups to corporations - Get $5,000 to $50,000,000 at 0% Interest</p>
+                <a href="#" onclick="showPage('contact')" class="cta-button">Get Funded Today</a>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="container">
+                <h2>Why Choose Trust Line Lending?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>🎯 0% Interest</h3>
+                        <p>Unique lending solutions with 0% interest rates to help your business grow without the burden of high interest costs.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>💰 $5K - $50M</h3>
+                        <p>Flexible loan amounts from $5,000 to $50,000,000 to meet the needs of any business size.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>⚡ Fast Approval</h3>
+                        <p>Quick application process with rapid approval so you can get the funding you need when you need it.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🏢 All Business Types</h3>
+                        <p>We work with startups, small businesses, and large corporations across all industries.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>📈 Business Credit Lines</h3>
+                        <p>Flexible lines of credit to help manage cash flow and fuel ongoing business operations.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🤝 Trusted Partner</h3>
+                        <p>Hundreds of businesses trust us for their financing needs with proven results.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page">
+        <div class="content-section">
+            <div class="container">
+                <h2>About Trust Line Lending</h2>
+                <p>At Trust Line Lending, we believe that every business deserves access to capital without the crushing weight of high interest rates. Founded on the principle of empowering entrepreneurs and established corporations alike, we've revolutionized business lending by offering 0% interest loans and flexible credit solutions.</p>
+                
+                <h3>Our Mission</h3>
+                <p>We exist to fuel business growth and success by providing accessible, affordable financing solutions. Whether you're launching your dream startup or expanding your established corporation, we're here to provide the capital you need with terms that make sense.</p>
+                
+                <h3>What Sets Us Apart</h3>
+                <p>Unlike traditional lenders, we've partnered with a network of forward-thinking lenders who understand that investing in businesses creates shared success. Our 0% interest model isn't just good for your bottom line—it's a commitment to genuine partnership and your long-term success.</p>
+                
+                <h3>Who We Serve</h3>
+                <p>From ambitious startups taking their first steps to established corporations planning major expansions, we work with businesses of all sizes across every industry. Our loan amounts range from $5,000 to $50,000,000, and we offer flexible business lines of credit to meet your unique needs.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Page -->
+    <div id="services" class="page">
+        <div class="content-section">
+            <div class="container">
+                <h2>Our Lending Solutions</h2>
+                
+                <div class="service-card">
+                    <h3>Business Term Loans</h3>
+                    <p><strong>Loan Amounts:</strong> $5,000 - $50,000,000</p>
+                    <p><strong>Interest Rate:</strong> 0%</p>
+                    <p>Perfect for major purchases, expansion projects, equipment acquisition, or working capital. Our term loans provide a lump sum of capital with flexible repayment terms designed around your business's cash flow.</p>
+                    <ul style="margin-top: 1rem; margin-left: 2rem;">
+                        <li>No hidden fees</li>
+                        <li>Flexible repayment schedules</li>
+                        <li>Fast approval process</li>
+                        <li>Funds available quickly</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <h3>Business Lines of Credit</h3>
+                    <p><strong>Credit Lines:</strong> Up to $50,000,000</p>
+                    <p><strong>Interest Rate:</strong> 0%</p>
+                    <p>Access revolving credit when you need it. Our business lines of credit provide flexibility for ongoing operational needs, seasonal fluctuations, or unexpected opportunities.</p>
+                    <ul style="margin-top: 1rem; margin-left: 2rem;">
+                        <li>Draw funds as needed</li>
+                        <li>Pay interest only on what you use</li>
+                        <li>Reusable credit line</li>
+                        <li>Perfect for managing cash flow</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <h3>Startup Financing</h3>
+                    <p><strong>Loan Amounts:</strong> $5,000 - $500,000</p>
+                    <p><strong>Interest Rate:</strong> 0%</p>
+                    <p>We believe in backing bold ideas. Our startup financing helps entrepreneurs turn their visions into reality with the capital needed to launch and grow.</p>
+                    <ul style="margin-top: 1rem; margin-left: 2rem;">
+                        <li>Funding for new businesses</li>
+                        <li>No personal collateral required in many cases</li>
+                        <li>Support through early growth stages</li>
+                        <li>Partnership-focused approach</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <h3>Corporate Expansion Loans</h3>
+                    <p><strong>Loan Amounts:</strong> $500,000 - $50,000,000</p>
+                    <p><strong>Interest Rate:</strong> 0%</p>
+                    <p>For established businesses ready to scale, our corporate expansion loans provide substantial capital for acquisitions, new locations, major equipment purchases, or market expansion.</p>
+                    <ul style="margin-top: 1rem; margin-left: 2rem;">
+                        <li>Large loan amounts</li>
+                        <li>Customized repayment structures</li>
+                        <li>Dedicated relationship manager</li>
+                        <li>Strategic partnership approach</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials Page -->
+    <div id="testimonials" class="page">
+        <div class="content-section">
+            <div class="container">
+                <h2>Success Stories</h2>
+                <p style="text-align: center; margin-bottom: 3rem;">See how Trust Line Lending has helped businesses like yours achieve their goals</p>
+
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">LT</div>
+                        <div class="testimonial-info">
+                            <h4>Linh Ta Le</h4>
+                            <p>Owner, Orient Express Nail and Spa</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-text">
+                        "Starting my own nail salon was a dream I had for years, but traditional lenders kept turning me down or offering terms I couldn't afford. Trust Line Lending believed in my vision and provided the capital I needed to make Orient Express Nail and Spa a reality. The 0% interest made all the difference—I could focus on building my business instead of worrying about crushing debt payments. Today, we're thriving with a loyal client base, and I'm so grateful for the partnership and support from Trust Line Lending."
+                    </div>
+                    <div class="funding-amount">Funded: $150,000</div>
+                </div>
+
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">MT</div>
+                        <div class="testimonial-info">
+                            <h4>Mark Timings</h4>
+                            <p>Owner, Floral Symphony Landscaping</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-text">
+                        "After 15 years working for someone else, I was ready to start my own landscaping company. I had the skills and the clients, but I needed equipment and working capital to get Floral Symphony Landscaping off the ground. Trust Line Lending's process was incredibly smooth, and the 0% interest terms meant I could invest more back into the business. Within six months, we'd already expanded our team and taken on several major commercial projects. I highly recommend Trust Line Lending to any entrepreneur ready to take the leap."
+                    </div>
+                    <div class="funding-amount">Funded: $50,000</div>
+                </div>
+
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">LB</div>
+                        <div class="testimonial-info">
+                            <h4>Lindredra Buxton</h4>
+                            <p>Owner, Braid and Shine</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-text">
+                        "Being a client of Trust Line Lending was the best move I made for my business. Starting Braid and Shine was a dream, and Dante made everything smooth and easy for me. The entire process was straightforward, and having access to the funding I needed without the stress of high interest rates allowed me to focus on what matters most—building my salon and serving my clients. I'm so grateful for the support and couldn't be happier with my decision to work with Trust Line Lending."
+                    </div>
+                    <div class="funding-amount">Funded: $10,000</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page">
+        <div class="content-section">
+            <div class="container">
+                <h2>Ready to Get Funded?</h2>
+                <div class="contact-card">
+                    <h3>Apply for Your Business Loan Today</h3>
+                    <p style="margin: 2rem 0;">Take the first step toward securing the capital your business needs. Our simple application process gets you answers fast.</p>
+                    <a href="https://getyourbizloan.io/lp1?pu=rechmbvJAE16w53tn" target="_blank" class="cta-button">Start Your Application</a>
+                    
+                    <div class="contact-info">
+                        <p><strong>Contact Us Directly:</strong></p>
+                        <p>📧 Email: <a href="mailto:Dante@TrustLineLending.com">Dante@TrustLineLending.com</a></p>
+                        <p>📞 Phone: <a href="tel:209-581-3950">209-581-3950</a></p>
+                    </div>
+                    
+                    <p style="margin-top: 2rem; font-size: 0.9rem; color: #666;">Loan amounts from $5,000 to $50,000,000 • 0% Interest • Fast Approval</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Trust Line Lending. All rights reserved.</p>
+            <p style="margin-top: 0.5rem;">Empowering businesses from startups to corporations</p>
+            <div class="contact-footer">
+                <p>📧 <a href="mailto:Dante@TrustLineLending.com">Dante@TrustLineLending.com</a></p>
+                <p>📞 <a href="tel:209-581-3950">209-581-3950</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
